@@ -1,0 +1,18 @@
+<% if @error %>
+  <p>
+    Wrong password for this username. You should try another password or another username.
+  </p>
+<% end %>
+
+<%= form_with(model: @login, url: create_login_path, local: true) do |f| %>
+  <%= f.label(:name, "Username") %>
+  <%= f.text_field(:name) %>
+  <%= f.label(:password, "Password") %>
+  <%= f.password_field(:password) %>
+  <%= f.submit "Log In" %>
+<% end %>
+
+<p>
+  You don't need to create an account, just pick a unique username. If no one else claimed that username
+  in the last week, you can log in again using the same username and password.
+</p>
