@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    session[:name].present?
+    session[:due_date].present? && session[:due_date] > Time.zone.now && session[:name].present?
   end
 end

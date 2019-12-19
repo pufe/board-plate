@@ -11,7 +11,7 @@ class Login < ApplicationRecord
   end
 
   def password_hash
-    Digest::SHA256.hexdigest("Adding #{name} to #{password}")
+    Digest::SHA256.hexdigest("User #{name} has #{password}")
   end
 
   def password_uniqueness

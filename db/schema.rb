@@ -15,6 +15,16 @@ ActiveRecord::Schema.define(version: 2019_11_03_195154) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "lobbies", force: :cascade do |t|
+    t.string "name"
+    t.string "status", default: "open", null: false
+    t.string "key"
+    t.string "owner", null: false
+    t.string "players", default: [], array: true
+    t.string "guests", default: [], array: true
+    t.string "messages", default: [], array: true
+  end
+
   create_table "logins", force: :cascade do |t|
     t.string "name"
     t.string "encrypted_password"

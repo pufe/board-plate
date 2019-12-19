@@ -1,3 +1,37 @@
 <h1>
-  Welcome<%= ", #{current_user}" if logged_in? %>!
+  Welcome <%= current_user %>!
 </h1>
+
+<p>
+  Lobbies you're in:
+</p>
+
+<% @user_lobbies.each do |lobby| %>
+  <div>
+    <%= link_to show_lobby_path(lobby.id) do %>
+      lobby.name
+    <% end %>
+  </div>
+<% end %>
+
+<p>
+  Open lobbies:
+</p>
+
+<% @open_lobbies.each do |lobby| %>
+  <div>
+    <%= form_with(model: @lobby, url: enter_lobby_path(lobby.id), method: "post", local: true) do |f| %>
+      <%= lobby.name %>
+      <%= f.password_field(:password) %>
+      <%= f.submit "Enter" %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= link_to new_lobby_path do %>
+  Create a new lobby
+<% end %>
+
+<%= form_with(url: logout_path, local: true) do %>
+  <%= submit_tag "Logout" %>
+<% end %>
